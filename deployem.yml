@@ -1,0 +1,27 @@
+---
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: httd-dep
+  labels:
+    type: webserver
+    author: krishna
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      type: webserver
+  template:
+    metadata:
+      name: httpd
+      labels:
+        type: webserver
+        author: krishna
+    spec:
+      containers:
+        - name: httpd-con
+          image: krishna1654/http2
+          ports:
+            - containerPort: 80
+              hostPort: 8010
+...
